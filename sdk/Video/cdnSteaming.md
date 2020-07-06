@@ -188,8 +188,8 @@ RTMP_STREAM_PUBLISH_STATE_EXCEPTIONSTOP
 
 ```java
 UCloudRtcSdkMixProfile mixProfile = new UCloudRtcSdkMixProfile();
-//同时支持转推+录制。MIX_TYPE_TRANSCODING_PUSH：单推流，MIX_TYPE_RECORD：单录像
-mixProfile.setType(MIX_TYPE_BOTH);
+//MIX_TYPE_TRANSCODING_PUSH：推流
+mixProfile.setType(MIX_TYPE_TRANSCODING_PUSH);
 //讲课模式。 LAYOUT_AVERAGE：均分模式，LAYOUT_CUSTOM：自定义模式
 mixProfile.setLayout(LAYOUT_CLASS_ROOM);
 //画面分辨率
@@ -237,6 +237,19 @@ sdkEngine.addMixStream("testId", UCLOUD_RTC_SDK_MEDIA_TYPE_VIDEO.ordinal());
 sdkEngine.delMixStream("testId", UCLOUD_RTC_SDK_MEDIA_TYPE_VIDEO.ordinal());
 ```
 
+### Android开启旁路推流回调
+
+```java
+//参数一code错误码，0代表开启成功，其他值失败，参数二msg，服务端返回信息，参数三fileName，录制文件名（开启录制功能时使用）
+onMixStart(int code,String msg, String fileName);
+```
+
+### Android停止旁路推流回调
+
+```java
+//参数一code错误码，0代表开启成功，其他值失败，参数二msg，服务端返回信息，参数三pushUrls，混流地址
+onMixStop(int code,String msg,String pushUrls);
+```
 
 ## ** iOS **
 
